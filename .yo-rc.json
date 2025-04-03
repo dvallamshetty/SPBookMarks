@@ -1,0 +1,21 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "nodeVersion": "18.20.4",
+    "sdksVersions": {
+      "@microsoft/microsoft-graph-client": "3.0.2",
+      "@microsoft/teams-js": "2.24.0"
+    },
+    "version": "1.20.0",
+    "libraryName": "bookmark",
+    "libraryId": "ab3f74fb-f895-401a-877b-09484f86c6ef",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "Bookmark",
+    "solutionShortDescription": "Bookmark description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}
