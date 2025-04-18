@@ -12,12 +12,7 @@ export interface IBookmarkWebPartProps {
 
 export default class BookmarkWebPart extends BaseClientSideWebPart<IBookmarkWebPartProps> {
   public render(): void {
-    const element: React.ReactElement<{}> = React.createElement(
-      Bookmark,
-      {
-      }
-    );
-
+    const element: React.ReactElement<{}> = React.createElement(Bookmark);
     ReactDom.render(element, this.domElement);
   }
 

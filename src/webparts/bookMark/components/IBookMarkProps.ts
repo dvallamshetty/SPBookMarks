@@ -1,7 +1,9 @@
+import { WebPartContext } from "@microsoft/sp-webpart-base";
+
 export interface IBookMarkProps {
-  description: string;
-  isDarkTheme: boolean;
-  environmentMessage: string;
-  hasTeamsContext: boolean;
-  userDisplayName: string;
+  Id?: number; 
+  Title: string;
+  Url: string;
+  UserName: string;
+  context:WebPartContext;
 }
