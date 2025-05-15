@@ -1,7 +1,7 @@
 import { FetchClient } from "@pnp/common";
 
 class JokeService {
-    private static apiUrl: string = "https://v2.jokeapi.dev/joke/Programming";
+    private static apiUrl: string = "https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit";
 
     public static async getRandomJoke(): Promise<string> {
         const fetchClient = new FetchClient();
