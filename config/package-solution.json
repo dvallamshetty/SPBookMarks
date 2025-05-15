@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
   "solution": {
-    "name": "bookmark-client-side-solution",
+    "name": "Joke-solution",
     "id": "ab3f74fb-f895-401a-877b-09484f86c6ef",
     "version": "1.0.0.0",
     "includeClientSideAssets": true,
@@ -16,10 +16,10 @@
     },
     "metadata": {
       "shortDescription": {
-        "default": "Bookmark description"
+        "default": "Joke description"
       },
       "longDescription": {
-        "default": "Bookmark description"
+        "default": "Joke description"
       },
       "screenshotPaths": [],
       "videoUrl": "",
@@ -27,14 +27,14 @@
     },
     "features": [
       {
-        "title": "bookmark Feature",
-        "description": "The feature that activates elements of the bookmark solution.",
+        "title": "Joke Feature",
+        "description": "The feature that activates elements of the joke solution.",
         "id": "3c7b43fc-9174-4274-855f-75ff63b68c2b",
         "version": "1.0.0.0"
       }
     ]
   },
   "paths": {
-    "zippedPackage": "solution/bookmark.sppkg"
+    "zippedPackage": "solution/joke.sppkg"
   }
 }

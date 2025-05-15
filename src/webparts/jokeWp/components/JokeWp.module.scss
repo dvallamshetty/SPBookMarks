@@ -1,0 +1,26 @@
+.randomJoke {
+    text-align: center;
+
+    h2 {
+        color: #0078d4;
+    }
+
+    p {
+        font-size: 1.2em;
+        margin: 20px 0;
+    }
+
+    button {
+        background-color: #0078d4;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+
+        &:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    }
+}

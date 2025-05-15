@@ -1,4 +1,4 @@
-declare interface IBookMarkWebPartStrings {
+declare interface IJokeWpWebPartStrings {
   PropertyPaneDescription: string;
   BasicGroupName: string;
   DescriptionFieldLabel: string;
@@ -13,7 +13,7 @@ declare interface IBookMarkWebPartStrings {
   UnknownEnvironment: string;
 }
 
-declare module 'BookMarkWebPartStrings' {
-  const strings: IBookMarkWebPartStrings;
+declare module 'JokeWpWebPartStrings' {
+  const strings: IJokeWpWebPartStrings;
   export = strings;
 }

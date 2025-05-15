@@ -1,18 +1,19 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
   "version": "2.0",
-  "bundles": {
-    "book-mark-web-part": {
+  "bundles": {    
+    "joke-wp-web-part": {
       "components": [
         {
-          "entrypoint": "./lib/webparts/bookMark/BookMarkWebPart.js",
-          "manifest": "./src/webparts/bookMark/BookMarkWebPart.manifest.json"
+          "entrypoint": "./lib/webparts/jokeWp/JokeWpWebPart.js",
+          "manifest": "./src/webparts/jokeWp/JokeWpWebPart.manifest.json"
         }
       ]
     }
   },
   "externals": {},
   "localizedResources": {
-    "BookMarkWebPartStrings": "lib/webparts/bookMark/loc/{locale}.js"
+    "BookMarkWebPartStrings": "lib/webparts/bookMark/loc/{locale}.js",
+    "JokeWpWebPartStrings": "lib/webparts/jokeWp/loc/{locale}.js"
   }
 }

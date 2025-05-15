@@ -12,7 +12,7 @@
     "test": "gulp test"
   },
   "dependencies": {
-    "@fluentui/react": "^8.122.14",
+    "@fluentui/react": "^8.106.4",
     "@microsoft/sp-component-base": "1.20.0",
     "@microsoft/sp-core-library": "1.20.0",
     "@microsoft/sp-lodash-subset": "1.20.0",
@@ -20,11 +20,11 @@
     "@microsoft/sp-property-pane": "1.20.0",
     "@microsoft/sp-webpart-base": "1.20.0",
     "@pnp/common": "^2.15.0",
-    "@pnp/logging": "^4.11.0",
+    "@pnp/logging": "^4.13.0",
     "@pnp/odata": "^2.15.0",
-    "@pnp/sp": "^4.11.0",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "@pnp/sp": "^4.13.0",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
     "tslib": "2.3.1"
   },
   "devDependencies": {
