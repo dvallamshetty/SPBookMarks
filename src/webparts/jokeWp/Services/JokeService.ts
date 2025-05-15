@@ -6,7 +6,7 @@ class JokeService {
     public static async getRandomJoke(): Promise<string> {
         const fetchClient = new FetchClient();
         try {
-            const response = await fetchClient.fetch(this.apiUrl,{method: "GET"});
+            const response = await fetchClient.fetch(this.apiUrl, { method: "GET" });
             const data = await response.json();
 
             if (data.type === "single") {
