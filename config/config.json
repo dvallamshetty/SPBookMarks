@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
   "version": "2.0",
-  "bundles": {    
+  "bundles": {
     "joke-wp-web-part": {
       "components": [
         {
@@ -9,11 +9,21 @@
           "manifest": "./src/webparts/jokeWp/JokeWpWebPart.manifest.json"
         }
       ]
+    },
+    "data-table-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/dataTable/DataTableWebPart.js",
+          "manifest": "./src/webparts/dataTable/DataTableWebPart.manifest.json"
+        }
+      ]
     }
   },
   "externals": {},
-  "localizedResources": {
-    "BookMarkWebPartStrings": "lib/webparts/bookMark/loc/{locale}.js",
-    "JokeWpWebPartStrings": "lib/webparts/jokeWp/loc/{locale}.js"
+  "localizedResources": { 
+    "JokeWpWebPartStrings": "lib/webparts/jokeWp/loc/{locale}.js",
+    "DataTableWebPartStrings": "lib/webparts/dataTable/loc/{locale}.js",
+    "ControlStrings": "node_modules/@pnp/spfx-controls-react/lib/loc/{locale}.js",
+    "PropertyControlStrings": "node_modules/@pnp/spfx-property-controls/lib/loc/{locale}.js"
   }
 }

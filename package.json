@@ -22,8 +22,12 @@
     "@pnp/common": "^2.15.0",
     "@pnp/logging": "^4.13.0",
     "@pnp/odata": "^2.15.0",
+    "@pnp/queryable": "^4.13.0",
     "@pnp/sp": "^4.13.0",
+    "@pnp/spfx-controls-react": "^3.21.0",
+    "@pnp/spfx-property-controls": "^3.20.0",
     "react": "17.0.1",
+    "react-data-table-component": "^7.7.0",
     "react-dom": "17.0.1",
     "tslib": "2.3.1"
   },
