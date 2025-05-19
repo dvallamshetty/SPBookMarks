@@ -41,6 +41,16 @@ export class ListService {
     }
   }
 
+  public async getListTitleById(listId: string): Promise<string> {
+    try {
+      const list = await this.sp.web.lists.getById(listId).select("Title")();
+      return list.Title;
+    } catch (err) {
+      console.error("Error fetching list title: ", err);
+      return "";
+    }
+  }
+
   // Legacy, not needed with PropertyFieldListPicker/ColumnPicker, kept for completeness
   public async getAvailableLists(): Promise<{ Title: string, Id: string }[]> {
     try {

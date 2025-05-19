@@ -1,20 +1,34 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { IListDataTableProps } from './IDataTableProps';
-import DataTable, { TableColumn } from 'react-data-table-component';
+import { DataGrid, GridColDef, GridRowsProp } from '@mui/x-data-grid';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 
 const ListDataTable: React.FC<IListDataTableProps> = ({ listId, listService, selectedColumns }) => {
   const [items, setItems] = useState<any[]>([]);
-  const [columns, setColumns] = useState<TableColumn<any>[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [showAdd, setShowAdd] = useState<boolean>(false);
   const [newItem, setNewItem] = useState<any>({});
+  const [listName, setListName] = useState<string>("");
+
+  // Fetch list name from list ID
+  useEffect(() => {
+    async function fetchListName() {
+      if (listId && listService) {
+        const name = await listService.getListTitleById(listId);
+        setListName(name);
+      } else {
+        setListName("");
+      }
+    }
+    fetchListName();
+  }, [listId, listService]);
 
   // Load items
   const loadItems = React.useCallback(() => {
     if (!listId || !selectedColumns || selectedColumns.length === 0) {
       setItems([]);
-      setColumns([]);
       return;
     }
     setLoading(true);
@@ -23,34 +37,6 @@ const ListDataTable: React.FC<IListDataTableProps> = ({ listId, listService, sel
       setLoading(false);
     });
   }, [listId, selectedColumns, listService]);
-
-  // Set columns based on selectedColumns
-  useEffect(() => {
-    if (selectedColumns && selectedColumns.length > 0) {
-      const cols: TableColumn<any>[] = selectedColumns.map((key) => ({
-        name: key,
-        selector: (row: any) => row[key],
-        sortable: true,
-        wrap: true,
-      }));
-      // Actions column
-      cols.push({
-        name: "Actions",
-        cell: (row: any) => (
-          <button onClick={() => handleDelete(row.Id)} style={{ color: 'red' }}>
-            Delete
-          </button>
-        ),
-        ignoreRowClick: true,
-        allowOverflow: true,
-        button: true,
-      });
-      setColumns(cols);
-    } else {
-      setColumns([]);
-    }
-    // eslint-disable-next-line
-  }, [selectedColumns]);
 
   useEffect(() => {
     if (listId && selectedColumns && selectedColumns.length > 0) {
@@ -98,14 +84,62 @@ const ListDataTable: React.FC<IListDataTableProps> = ({ listId, listService, sel
     loadItems();
   };
 
+  // Prepare rows and columns for MUI DataGrid
+  const rows: GridRowsProp = items.map((item, idx) => ({
+    id: item.Id ?? idx,
+    ...selectedColumns.reduce((acc, key) => {
+      acc[key] = item[key];
+      return acc;
+    }, {} as Record<string, any>)
+  }));
+
+  const columns: GridColDef[] = [
+    ...selectedColumns.map(col => ({
+      field: col,
+      headerName: col,
+      flex: 1,
+      minWidth: 120,
+      editable: false,
+    })),
+    {
+      field: 'actions',
+      headerName: 'Actions',
+      minWidth: 120,
+      sortable: false,
+      filterable: false,
+      renderCell: params => (
+        <Button
+          color="error"
+          variant="outlined"
+          size="small"
+          onClick={() => handleDelete(params.row.Id)}
+        >
+          Delete
+        </Button>
+      )
+    }
+  ];
+
   return (
-    <div>
-      <h3>List: {listId}</h3>
-      <button onClick={handleShowAddForm} style={{ marginBottom: 8 }} disabled={!selectedColumns || selectedColumns.length === 0}>Add Item</button>
+    <Box>
+      <h3>List: {listName || listId}</h3>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={handleShowAddForm}
+        sx={{ mb: 2 }}
+        disabled={!selectedColumns || selectedColumns.length === 0}
+      >
+        Add Item
+      </Button>
       {showAdd && (
-        <form onSubmit={handleAddItem} style={{ marginBottom: 12, background: '#f8f8f8', padding: 12 }}>
+        <Box
+          component="form"
+          onSubmit={handleAddItem}
+          sx={{ mb: 2, background: '#f8f8f8', p: 2, borderRadius: 1 }}
+        >
           {Object.keys(newItem).map((field) => (
-            <div key={field}>
+            <Box key={field} sx={{ mb: 2 }}>
               <label>{field}:</label>
               <input
                 required={field === "Title"}
@@ -114,24 +148,24 @@ const ListDataTable: React.FC<IListDataTableProps> = ({ listId, listService, sel
                 onChange={e => handleAddInputChange(field, e.target.value)}
                 style={{ marginLeft: 8, marginBottom: 4 }}
               />
-            </div>
+            </Box>
           ))}
-          <button type="submit" style={{ marginRight: 8 }}>Add</button>
-          <button type="button" onClick={() => setShowAdd(false)}>Cancel</button>
-        </form>
+          <Button type="submit" variant="contained" color="primary" sx={{ mr: 2 }}>
+            Add
+          </Button>
+          <Button type="button" onClick={() => setShowAdd(false)}>
+            Cancel
+          </Button>
+        </Box>
       )}
-      <DataTable
-        columns={columns}
-        data={items}
-        pagination
-        highlightOnHover
-        dense
-        responsive
-        striped
-        progressPending={loading}
-        noDataComponent="No items found."
-      />
-    </div>
+      <div style={{ width: '100%', height: 500 }}>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          loading={loading}          
+        />
+      </div>
+    </Box>
   );
 };
 

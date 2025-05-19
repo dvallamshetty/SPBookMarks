@@ -15,6 +15,7 @@
     "noImplicitAny": true,
     "strictNullChecks": false,
     "noUnusedLocals":false,
+    "esModuleInterop":true,
 
     "typeRoots": [
       "./node_modules/@types",
